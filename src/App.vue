@@ -1,20 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <CustomNavbar />
+  <InfiniteImageSlider/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import CustomNavbar from './components/CustomNavbar.vue'
+import InfiniteImageSlider from './components/InfiniteImageSlider.vue' 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CustomNavbar,
+    InfiniteImageSlider
   }
 }
 </script>
 
 <style>
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  color: inherit;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
