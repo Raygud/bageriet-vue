@@ -1,23 +1,32 @@
 <template>
+
   <CustomNavbar />
-  <InfiniteImageSlider/>
+  <InfiniteImageSlider />
+  <StatmentComponent />
+  <NewsComponent />
+  <NewsLetter />
 </template>
 
 <script>
 import CustomNavbar from './components/CustomNavbar.vue'
-import InfiniteImageSlider from './components/InfiniteImageSlider.vue' 
+import InfiniteImageSlider from './components/InfiniteImageSlider.vue'
+import NewsComponent from "./components/NewsComponent.vue"
+import NewsLetter from './components/NewsLetter.vue'
+import StatmentComponent from './components/StatmentComponent.vue'
 export default {
   name: 'App',
   components: {
     CustomNavbar,
-    InfiniteImageSlider
+    InfiniteImageSlider,
+    StatmentComponent,
+    NewsComponent,
+    NewsLetter
   }
 }
 </script>
 
 <style>
-
-*{
+* {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -31,6 +40,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
