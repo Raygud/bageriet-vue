@@ -1,21 +1,30 @@
 <template>
     <div class="Statement-Container">
 
-        <h2>Vi skaber lækkert brød!</h2>
-        <p>Der er mange tilgængelige udgaver af lorme ipsum, men de fleste udgaver har gennemgået forandringer, når
-
-            nogen har tilgøjet humor eller tilfældige ord, som på ingen måde ser ægte ud
-        </p>
+        <h2>{{ Title }}</h2>
+        <p>{{ Message }}</p>
     </div>
 
 </template>
 
 <script>
 export default {
+    props: {
+        Title: {
+            type: String,
+            required: true
+        },
+        Message: {
+            type: String,
+            required: true
+        }
+    },
     setup() {
 
 
-        return {}
+        return {
+
+        }
     }
 }
 </script>

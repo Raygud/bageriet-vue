@@ -1,11 +1,13 @@
 <template>
-  <nav class="CenteredNav">
+  <nav :class="hasBg ? 'NavBackDropActive CenteredNav' : 'NavBackDropDisabled CenteredNav'">
     <ul class="FlexedUl">
-      <li><a href="/" title="Forside">FORSIDE</a></li>
-      <li><a href="/about" title="Om vores Produkter">PRODUKTER</a></li>
-      <h3 class="CenterLogo"><a href="/services" title="Hjem">bageriet</a></h3>
-      <li><a href="/blog" title="Kontakt os">KONTAKT</a></li>
-      <li><a href="/contact" title="Login">LOGIN</a></li>
+      <li><router-link title="Forside" to="/">FORSIDE</router-link></li>
+      <li><router-link title="Om vores Produkter" to="/Produkter">PRODUKTER</router-link></li>
+      <li>
+        <h3 class="CenterLogo"><router-link title="Logo" to="/">bageriet</router-link></h3>
+      </li>
+      <li><router-link title="Kontakt os" to="/Kontakt">KONTAKT</router-link></li>
+      <li><router-link title="Login" to="/Login">LOGIN</router-link></li>
     </ul>
   </nav>
 </template>
@@ -13,8 +15,32 @@
 <script>
 export default {
   name: 'CustomNavbar',
+  data() {
+    return {
+      hasBg: false
+    }
+  },
   props: {
     msg: String
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to.path)
+      console.log(from)
+      switch (to.path) {
+        case "/":
+          this.hasBg = false
+          break;
+
+        case "/Produkter":
+          console.log("Produkter")
+          this.hasBg = true
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 }
 </script>
@@ -27,7 +53,7 @@ export default {
 }
 
 .CenteredNav {
-  position: absolute;
+  top: 0;
   padding-top: 1vw;
   padding-bottom: 2vw;
   width: 100%;
@@ -35,7 +61,17 @@ export default {
   display: flex;
   justify-content: center;
   z-index: 99;
-  /* background-image: url(@/assets/Images/slide1.jpg); */
+}
+
+.NavBackDropActive {
+  background-image: url(@/assets/Images/slide1.jpg);
+
+}
+
+.NavBackDropDisabled {
+  position: absolute;
+
+  background-image: none;
 }
 
 .FlexedUl {

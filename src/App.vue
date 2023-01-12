@@ -1,26 +1,25 @@
 <template>
-
-  <CustomNavbar />
-  <InfiniteImageSlider />
-  <StatmentComponent />
-  <NewsComponent />
-  <NewsLetter />
+  <div>
+    <CustomNavbar />
+    <main>
+      <router-view />
+    </main>
+    <CustomFooter />
+  </div>
 </template>
 
+
+
 <script>
+
 import CustomNavbar from './components/CustomNavbar.vue'
-import InfiniteImageSlider from './components/InfiniteImageSlider.vue'
-import NewsComponent from "./components/NewsComponent.vue"
-import NewsLetter from './components/NewsLetter.vue'
-import StatmentComponent from './components/StatmentComponent.vue'
+import CustomFooter from './components/CustomFooter.vue'
+
 export default {
   name: 'App',
   components: {
     CustomNavbar,
-    InfiniteImageSlider,
-    StatmentComponent,
-    NewsComponent,
-    NewsLetter
+    CustomFooter
   }
 }
 </script>
@@ -32,6 +31,8 @@ export default {
   list-style: none;
   text-decoration: none;
   color: inherit;
+  scroll-behavior: smooth;
+
 }
 
 #app {
