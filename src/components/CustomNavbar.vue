@@ -1,5 +1,5 @@
 <template>
-  <nav :class="hasBg ? 'NavBackDropActive CenteredNav' : 'NavBackDropDisabled CenteredNav'">
+  <nav :class="hasBg ? 'NavBackDropDisabled CenteredNav' : 'NavBackDropActive CenteredNav'">
     <ul class="FlexedUl">
       <li><router-link title="Forside" to="/">FORSIDE</router-link></li>
       <li><router-link title="Om vores Produkter" to="/Produkter">PRODUKTER</router-link></li>
@@ -27,18 +27,11 @@ export default {
     $route(to, from) {
       console.log(to.path)
       console.log(from)
-      switch (to.path) {
-        case "/":
-          this.hasBg = false
-          break;
+      if (to.path != "/") {
+        this.hasBg = false
 
-        case "/Produkter":
-          console.log("Produkter")
-          this.hasBg = true
-          break;
-
-        default:
-          break;
+      } else {
+        this.hasBg = true
       }
     }
   }

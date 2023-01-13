@@ -7,7 +7,7 @@
                     <p>{{ item.teaser.substring(0, 85) }}<a href="">
                             {{ item.teaser.length < 85 ? " " : "... " }} </a>
                     </p>
-                    <button>SE MERE</button>
+                    <button v-on:click="navigateToPage(item.id)">SE MERE </button>
         </div>
 
     </div>
@@ -51,6 +51,12 @@ export default {
                 console.error(error);
             }
         },
+        navigateToPage(id) {
+            this.$router.push({
+                name: 'Produkt',
+                params: { id }
+            })
+        }
     },
 };
 </script>

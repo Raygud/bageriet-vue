@@ -11,8 +11,8 @@
                     <font-awesome-icon class="Icon" icon="fa-regular fa-envelope" />
 
                 </div>
-                <input placeholder="indtast din email..." type="email">
-                <button>TILMELD</button>
+                <input v-model="email" placeholder="indtast din email..." type="email">
+                <button @click="submitEmail">TILMELD</button>
             </div>
         </div>
     </div>
@@ -20,14 +20,34 @@
 
 <script>
 export default {
-    setup() {
-
-
-        return {}
+    data() {
+        return {
+            email: ""
+        }
+    },
+    methods: {
+        submitEmail() {
+            console.log(this.email);
+            const data = { email: this.email };
+            fetch('https://api.mediehuset.net/bakeonline/newsletter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     }
 }
-</script>
 
+</script>
 <style scoped>
 .NewsLetter-Main-Container {
     margin-top: 7vw;

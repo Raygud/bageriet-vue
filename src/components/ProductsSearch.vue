@@ -1,13 +1,23 @@
 <template>
-    <div>
-        <ol class="News-Item" v-for="item in items" :key="item.id">
-            <li @click="activeItem = item.id">{{ item.title }}</li>
-        </ol>
+    <div class="Product-Search-Main-Container">
+        <div class="Product-Menu">
+            <ol v-for="item in items" :key="item.id">
+                <li @click="activeItem = item.id">{{ item.title }}</li>
+            </ol>
+        </div>
 
         <div class="grid-container">
 
-            <div v-for="item in categoryItems" :key="item.id">
-                {{ activeItem === item.category_id ? null : item.title }}
+            <div class="grid-item" v-for="item in filteredItems" :key="item.id">
+
+                <img :src="item.image.fullpath" alt="">
+                <h3 :title="item.title">{{ item.title.substring(0, 30) }}...</h3>
+                <p>{{ item.teaser.substring(0, 175) }}
+                    <a href="">
+                        {{ item.teaser.length < 175 ? " " : "... Read more" }} </a>
+                </p>
+                <button v-on:click="navigateToPage(item.id)">SE MERE</button>
+
             </div>
         </div>
 
@@ -28,6 +38,16 @@ export default {
         this.fetchData();
         this.fetchCategory("https://api.mediehuset.net/bakeonline/products");
     },
+    computed: {
+        filteredItems() {
+            if (this.activeItem != null) {
+                return this.categoryItems.filter(item => item.category_id === this.activeItem);
+            }
+            else {
+                return this.categoryItems
+            }
+        },
+    },
     watch: {
         activeItem(newValue) {
             if (newValue !== null) {
@@ -36,6 +56,12 @@ export default {
         }
     },
     methods: {
+        navigateToPage(id) {
+            this.$router.push({
+                name: 'Produkt',
+                params: { id }
+            })
+        },
         async fetchData() {
             try {
                 const response = await fetch('https://api.mediehuset.net/bakeonline/categories');
@@ -67,11 +93,46 @@ export default {
 </script>
 
 <style scoped>
+.Product-Search-Main-Container {
+    width: 50vw;
+    margin: auto;
+    display: grid;
+    grid-template-areas: "GridMenu GridC ";
+    margin-top: 5vw;
+}
+
+.Product-Menu {
+    grid-area: GridMenu;
+    width: 0vw;
+}
+
+
 .grid-container {
     margin: auto;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
     width: 80%;
-    gap: 1vw;
+    gap: 5vw;
+    grid-area: GridC;
+}
+
+.grid-item {
+    max-width: 10vw;
+    min-width: 10vw;
+}
+
+h3 {
+    margin-top: 1vw;
+}
+
+p {
+    margin-top: 1vw;
+}
+
+img {
+    width: 100%;
+    min-height: 60%;
+    max-height: 60%;
+
 }
 </style>
