@@ -11,10 +11,10 @@
             <div class="grid-item" v-for="item in filteredItems" :key="item.id">
 
                 <img :src="item.image.fullpath" alt="">
-                <h3 :title="item.title">{{ item.title.substring(0, 30) }}...</h3>
-                <p>{{ item.teaser.substring(0, 175) }}
+                <h3 :title="item.title">{{ item.title.substring(0, 10) }}...</h3>
+                <p>{{ item.teaser.substring(0, 40) }}
                     <a href="">
-                        {{ item.teaser.length < 175 ? " " : "... Read more" }} </a>
+                        {{ item.teaser.length < 40 ? " " : "... Read more" }} </a>
                 </p>
                 <button v-on:click="navigateToPage(item.id)">SE MERE</button>
 
@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 .Product-Search-Main-Container {
-    width: 50vw;
+    width: 70vw;
     margin: auto;
     display: grid;
     grid-template-areas: "GridMenu GridC ";
@@ -103,36 +103,49 @@ export default {
 
 .Product-Menu {
     grid-area: GridMenu;
-    width: 0vw;
+    text-align: left;
 }
 
 
 .grid-container {
     margin: auto;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     width: 80%;
-    gap: 5vw;
-    grid-area: GridC;
 }
 
 .grid-item {
-    max-width: 10vw;
-    min-width: 10vw;
-}
-
-h3 {
-    margin-top: 1vw;
-}
-
-p {
-    margin-top: 1vw;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    gap: 0.5vw;
 }
 
 img {
     width: 100%;
-    min-height: 60%;
-    max-height: 60%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
 
+h3 {
+    margin-top: 0.2vw;
+    font-size: 1vw;
+}
+
+p {
+    font-size: 1vw;
+    margin-top: 0.2vw;
+}
+
+
+button{
+    width: 100%;
+    height: 4vh;
+    background-color: white;
+    border-color: rgb(181, 181, 238);
 }
 </style>

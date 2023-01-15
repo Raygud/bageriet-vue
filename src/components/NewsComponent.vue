@@ -4,7 +4,7 @@
         <div class="News-Item" v-for="item in items.slice(0, 3)" :key="item.id">
 
             <img :src="item.image" alt="">
-            <h3 :title="item.title">{{ item.title.substring(0, 30) }}...</h3>
+            <h3 :title="item.title">{{ item.title.substring(0, 29) }}...</h3>
             <p>{{ item.teaser.substring(0, 175) }}
                 <a href="">
                     {{ item.teaser.length < 175 ? " " : "... Read more" }} </a>

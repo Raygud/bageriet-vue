@@ -1,16 +1,23 @@
 <template>
-    <div>
+    <div class="Product-Page-Container">
         <h1>{{ item.title }}</h1>
-        <div>
-            <img :src="item.image.fullpath" alt="">
-            <p>{{ item.description }}</p>
-        </div>
-
+        <div class="Product-Information">
+        <ProductDescription :Image="item.image.fullpath" :Description="item.description" />
+        <ProductIngredient :Ingredients="item.ingredients"/>
+    </div>
     </div>
 </template>
 
 <script>
+import ProductDescription from '@/components/ProductDescription.vue';
+import ProductIngredient from '@/components/ProductIngredient.vue';
+
 export default {
+    
+    components:{
+    ProductDescription,
+    ProductIngredient
+},
     props: {
         id: {
             type: Number,
@@ -40,3 +47,19 @@ export default {
     }
 }
 </script>
+
+<style>
+
+.Product-Page-Container{
+    width: 80%;
+    margin: auto;
+}
+
+.Product-Information{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+ 
+</style>

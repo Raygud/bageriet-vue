@@ -24,9 +24,9 @@ export default {
     msg: String
   },
   watch: {
-    $route(to, from) {
-      console.log(to.path)
-      console.log(from)
+    $route(to) {
+      
+      // console.log(to.path)
       if (to.path != "/") {
         this.hasBg = false
 
