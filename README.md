@@ -1,5 +1,8 @@
 # bageriet-vue
 
+[Live site!](https://bageriet-vue.vercel.app/)
+
+
 ## Project setup
 ```
 npm install
