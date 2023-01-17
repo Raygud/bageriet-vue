@@ -14,19 +14,22 @@ const router = createRouter({
         { path: '/', component: Home },
         { path: '/Produkter', component: ProductsPage },
         { path: '/Produkt/:id', component: ProductPage, props: true, name: 'Produkt' },
-        { path: '/Kontakt', component: ContactPage, beforeEnter: guard },
+        { path: '/Kontakt', component: ContactPage, beforeEnter: Proteced },
         { path: '/Login', component: LoginPage }
     ],
     
     
 })
-function guard(to, from, next) {
-    if (localStorage.getItem("token") !== null) {
+function Proteced(to, from, next) {
+    console.log(to)
+    if (sessionStorage.getItem("Token") !== null) {
         next()
     } else {
         next('/Login')
     }
 }
+
+
 
 
 

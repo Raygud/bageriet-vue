@@ -21,7 +21,10 @@
   </template>
 
 <script>
+
+
 export default {
+  
     setup () {
         
 
@@ -39,15 +42,15 @@ export default {
     })
     .then(response => response.json())
     .then(data => {
-        sessionStorage.setItem("Token", data.access_token);
-        sessionStorage.getItem("lastname");
-        
+        sessionStorage.setItem("Token", data.access_token);        
     })
     .catch(error => console.error(error))
   }
 }
 
 }
+
+
 </script>
 
 <style scoped>
